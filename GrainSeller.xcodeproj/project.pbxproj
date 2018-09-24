@@ -13,6 +13,8 @@
 		E588C0BC2158EAEC00934702 /* GrainSeller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E588C0BA2158EAEC00934702 /* GrainSeller.xcdatamodeld */; };
 		E588C0BE2158EAEE00934702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E588C0BD2158EAEE00934702 /* Assets.xcassets */; };
 		E588C0C12158EAEE00934702 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E588C0BF2158EAEE00934702 /* LaunchScreen.storyboard */; };
+		E588C0CC2159152600934702 /* TabBar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E588C0CB2159152600934702 /* TabBar.xcassets */; };
+		E588C0CE2159154600934702 /* TodayCell.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E588C0CD2159154600934702 /* TodayCell.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		E588C0BD2158EAEE00934702 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E588C0C02158EAEE00934702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E588C0C22158EAEE00934702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E588C0CB2159152600934702 /* TabBar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBar.xcassets; sourceTree = "<group>"; };
+		E588C0CD2159154600934702 /* TodayCell.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TodayCell.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,41 @@
 		E588C0B22158EAEC00934702 /* GrainSeller */ = {
 			isa = PBXGroup;
 			children = (
+				E588C0CA215914EB00934702 /* Data */,
 				E588C0B32158EAEC00934702 /* AppDelegate.swift */,
-				E588C0B52158EAEC00934702 /* ViewController.swift */,
-				E588C0B72158EAEC00934702 /* Main.storyboard */,
+				E588C0C8215914D100934702 /* Controllers */,
+				E588C0C9215914DF00934702 /* View */,
 				E588C0BD2158EAEE00934702 /* Assets.xcassets */,
-				E588C0BF2158EAEE00934702 /* LaunchScreen.storyboard */,
+				E588C0CD2159154600934702 /* TodayCell.xcassets */,
+				E588C0CB2159152600934702 /* TabBar.xcassets */,
 				E588C0C22158EAEE00934702 /* Info.plist */,
-				E588C0BA2158EAEC00934702 /* GrainSeller.xcdatamodeld */,
 			);
 			path = GrainSeller;
+			sourceTree = "<group>";
+		};
+		E588C0C8215914D100934702 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E588C0B52158EAEC00934702 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E588C0C9215914DF00934702 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E588C0B72158EAEC00934702 /* Main.storyboard */,
+				E588C0BF2158EAEE00934702 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E588C0CA215914EB00934702 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E588C0BA2158EAEC00934702 /* GrainSeller.xcdatamodeld */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +157,9 @@
 			files = (
 				E588C0C12158EAEE00934702 /* LaunchScreen.storyboard in Resources */,
 				E588C0BE2158EAEE00934702 /* Assets.xcassets in Resources */,
+				E588C0CE2159154600934702 /* TodayCell.xcassets in Resources */,
 				E588C0B92158EAEC00934702 /* Main.storyboard in Resources */,
+				E588C0CC2159152600934702 /* TabBar.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
