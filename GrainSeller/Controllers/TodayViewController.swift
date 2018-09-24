@@ -8,15 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TodayViewController: UIViewController {
+    
+    let filter = Filter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        // Lots of work!!! FUCK!!!
     }
 
 
 }
 
+extension TodayViewController: FilterDelegate {
+    
+    func filterUpdated(filter: Filter) {
+        print("filter updated")
+    }
+    
+}
