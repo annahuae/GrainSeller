@@ -11,8 +11,12 @@ import UIKit
 class TodayTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var dateFrom: UILabel!
+    @IBOutlet weak var dateTo: UILabel!
     @IBOutlet weak var buyerLabel: UILabel!
     @IBOutlet weak var commodityLabel: UILabel!
+    @IBOutlet weak var volumeLabel: UILabel!
+    @IBOutlet weak var basisLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

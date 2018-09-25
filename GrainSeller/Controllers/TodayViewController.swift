@@ -110,11 +110,23 @@ extension TodayViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM"
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "todayCell") as! TodayTableViewCell
         cell.tag = Int(tableViewDataSource.items[indexPath.section][indexPath.row].id)
         
-        cell.buyerLabel.text = tableViewDataSource.items[indexPath.section][indexPath.row].buyer!
-        cell.commodityLabel.text = tableViewDataSource.items[indexPath.section][indexPath.row].commodity!
+        let contract = tableViewDataSource.items[indexPath.section][indexPath.row]
+        
+        cell.buyerLabel.text = (arc4random_uniform(2) == 0 ? "[CIF] " : "[FOB] ") + contract.commodity! + (contract.specification != nil ? " \(contract.specification!)" : "")
+        cell.commodityLabel.text = contract.buyer! + " to Philipines"
+        
+        if let dateFrom = contract.shipmentFrom {
+            cell.dateFrom.text = dateFormatter.string(from: dateFrom)
+        }
+        if let dateTo = contract.shipmentTo {
+            cell.dateTo.text = dateFormatter.string(from: dateTo)
+        }
 
         return cell
     }
