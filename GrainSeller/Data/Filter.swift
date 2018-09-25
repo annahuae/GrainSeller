@@ -8,19 +8,29 @@
 
 import Foundation
 
-class FilterOption {
+class FilterOption : Codable {
     var header : String = ""
     var items : [String] = []
     var selected : [String] = []
     var multipleSelection : Bool = true
     var defaultValues : [String] = []
+    
+    func updateItems(items: [String]) {
+        let oldItems = Set(self.items)
+        let oldSelection = Set(self.selected)
+        let newItems = Set(items)
+        
+        self.items = items
+        self.selected = Array(newItems.intersection(oldSelection).union(newItems.subtracting(oldItems)))
+    }
 }
 
-class Filter {
+class Filter : Codable {
     var commodities = 0
     var buyers = 1
-    var status = 2
-    var sort = 3
+    var nominated = 2
+    var status = 3
+    var sort = 4
     
     var sections : [FilterOption] = []
     
@@ -34,8 +44,14 @@ class Filter {
         self.sections.append(filterOption)
 
         filterOption = FilterOption()
+        filterOption.header = "Nominated"
+        filterOption.items = ["Feautured", "Nominated"]
+        self.sections.append(filterOption)
+        
+        filterOption = FilterOption()
         filterOption.header = "Status"
         filterOption.items = ["Opened", "Closed"]
+        filterOption.defaultValues = [filterOption.items[0]]
         self.sections.append(filterOption)
 
         filterOption = FilterOption()
@@ -49,18 +65,6 @@ class Filter {
     }
     
     func reset() {
-        sections[0].selected = sections[0].items
-        sections[1].selected = sections[1].items
-        sections[2].selected = sections[2].items
-        sections[3].selected = sections[3].defaultValues
-    }
-    
-    func updateOptionItems(filterOption: FilterOption, items: [String]) {
-        let oldItems = Set(filterOption.items)
-        let oldSelection = Set(filterOption.selected)
-        let newItems = Set(items)
-        
-        filterOption.items = items
-        filterOption.selected = Array(newItems.intersection(oldSelection).union(newItems.subtracting(oldItems)))
+        sections.forEach { $0.selected = $0.defaultValues.count > 0 ? $0.defaultValues : $0.items }
     }
 }

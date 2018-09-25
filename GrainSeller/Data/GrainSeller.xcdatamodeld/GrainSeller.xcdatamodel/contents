@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Contract" representedClassName="Contract" syncable="YES" codeGenerationType="class">
-        <attribute name="buyer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="buyer" attributeType="String" syncable="YES"/>
         <attribute name="closed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="commodity" attributeType="String" syncable="YES"/>
         <attribute name="destination" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
-        <attribute name="price" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="shipmentFrom" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="shipmentTo" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="signedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="specification" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="volume" optional="YES" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="vessel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vessel" inverseName="vessel" inverseEntity="Vessel" syncable="YES"/>
+        <attribute name="volume" attributeType="Integer 64" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="vessel" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Vessel" inverseName="contract" inverseEntity="Vessel" syncable="YES"/>
     </entity>
     <entity name="Vessel" representedClassName="Vessel" syncable="YES" codeGenerationType="class">
         <attribute name="eta" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="loaded" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="vessel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contract" inverseName="vessel" inverseEntity="Contract" syncable="YES"/>
+        <relationship name="contract" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contract" inverseName="vessel" inverseEntity="Contract" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contract" positionX="-63" positionY="-18" width="128" height="240"/>
-        <element name="Vessel" positionX="-54" positionY="63" width="128" height="120"/>
+        <element name="Contract" positionX="-54.33984375" positionY="-13.546875" width="128" height="240"/>
+        <element name="Vessel" positionX="171.40625" positionY="40.30859375" width="128" height="120"/>
     </elements>
 </model>

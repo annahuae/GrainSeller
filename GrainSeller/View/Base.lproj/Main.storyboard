@@ -12,7 +12,7 @@
         <!--Filter-->
         <scene sceneID="kGl-V7-idJ">
             <objects>
-                <tableViewController title="Filter" id="jii-0i-y0d" customClass="FilterTableViewController" customModule="GrainSeller" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Filter" id="jii-0i-y0d" customClass="FilterViewController" customModule="GrainSeller" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EdC-IK-yLf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,8 +98,8 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="add"/>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iQQ-i5-Hfk">
-                                <rect key="frame" x="0.0" y="130" width="375" height="488"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iQQ-i5-Hfk">
+                                <rect key="frame" x="0.0" y="138" width="375" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cnH-Fr-fir">
@@ -111,6 +111,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="gZu-te-GFs"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Dmf-NY-dhP"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -122,7 +126,7 @@
                             <constraint firstItem="DvX-4b-NBt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="jg0-zP-Wkb"/>
                             <constraint firstItem="DvX-4b-NBt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="k1G-9W-tb1"/>
                             <constraint firstItem="iQQ-i5-Hfk" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="na4-8I-fLH"/>
-                            <constraint firstItem="iQQ-i5-Hfk" firstAttribute="top" secondItem="DvX-4b-NBt" secondAttribute="bottom" constant="8" id="yQs-0L-guO"/>
+                            <constraint firstItem="iQQ-i5-Hfk" firstAttribute="top" secondItem="DvX-4b-NBt" secondAttribute="bottom" constant="16" id="yQs-0L-guO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -131,12 +135,19 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Filter" id="j90-Pv-Eof">
                                 <connections>
-                                    <segue destination="jii-0i-y0d" kind="show" id="00o-K0-ZoI"/>
+                                    <segue destination="jii-0i-y0d" kind="show" identifier="toFilterViewController" id="00o-K0-ZoI"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Copy" id="aql-Po-2Cn"/>
+                            <barButtonItem title="Copy" id="aql-Po-2Cn">
+                                <connections>
+                                    <action selector="copyAction:" destination="BYZ-38-t0r" id="IzN-Gt-7ac"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="iQQ-i5-Hfk" id="ABj-sF-db9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,15 +12,15 @@ protocol FilterDelegate {
     func filterUpdated(filter: Filter)
 }
 
-class FilterTableViewController: UITableViewController {
+class FilterViewController: UITableViewController {
 
-    let filter = Filter()
+    var filter = Filter()
     
     var delegate: FilterDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -77,10 +77,17 @@ class FilterTableViewController: UITableViewController {
                     filter.sections[indexPath.section].selected.append(itemSelected)
                     cell.accessoryType = .checkmark
                 } else {
-                    filter.sections[indexPath.section].selected = filter.sections[indexPath.section].selected.filter { $0 != itemSelected }
-                    cell.accessoryType = .none
+                    if filter.sections[indexPath.section].selected.count >= 2 { // MARK: Doubts
+                        filter.sections[indexPath.section].selected = filter.sections[indexPath.section].selected.filter { $0 != itemSelected }
+                        cell.accessoryType = .none
+                    }
+                }
+                // Sorting selected values before sending it back
+                if filter.sections[indexPath.section].selected.count > 0 {
+                    filter.sections[indexPath.section].selected = filter.sections[indexPath.section].selected.sorted{ $0 < $1 }
                 }
             } else {
+                
                 // Single choice section: Sort
                 if cell.accessoryType == .none {
                     for i in 0...tableView.numberOfRows(inSection: indexPath.section)-1 {
@@ -98,9 +105,6 @@ class FilterTableViewController: UITableViewController {
         }
         
         delegate?.filterUpdated(filter: filter)
-
-        print("Status: \(filter.sections[filter.status].selected)")
-        print("Sort: \(filter.sections[filter.sort].selected)")
     }
 
     /*
