@@ -68,11 +68,24 @@ class TodayViewController: UIViewController {
     
     @IBAction func copyAction(_ sender: Any) {
         var str = ""
-        let selectedContracts = contracts.filter{ selected.contains(Int($0.id)) }
-        selectedContracts.forEach{ contract in
-            str += "\(contract.commodity!) \(contract.buyer!) \(contract.volume)\n"
+        
+        if selected.count > 0 {
+            let selectedContracts = contracts.filter{ selected.contains(Int($0.id)) }
+            selectedContracts.forEach{ contract in
+                str += "\(contract.commodity!) \(contract.buyer!) \(contract.volume)\n"
+            }
+            UIPasteboard.general.string = str
+            
+            // Show alert
+            let alert = UIAlertController(title: "Copy", message: "\(selected.count) contracts copied", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) { alert.dismiss(animated: true, completion: nil) }
+        } else {
+            let alert = UIAlertController(title: "Copy", message: "Please select contract(s)", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { alert.dismiss(animated: true, completion: nil) }
         }
-        UIPasteboard.general.string = str
+        
     }
 
 }
@@ -97,11 +110,12 @@ extension TodayViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "todayCell") as! TodayTableViewCell
         cell.tag = Int(tableViewDataSource.items[indexPath.section][indexPath.row].id)
-        cell.textLabel?.text = "\(tableViewDataSource.items[indexPath.section][indexPath.row].buyer!) | \(tableViewDataSource.items[indexPath.section][indexPath.row].commodity!) | \(tableViewDataSource.items[indexPath.section][indexPath.row].volume) | \(tableViewDataSource.items[indexPath.section][indexPath.row].closed)"
         
+        cell.buyerLabel.text = tableViewDataSource.items[indexPath.section][indexPath.row].buyer!
+        cell.commodityLabel.text = tableViewDataSource.items[indexPath.section][indexPath.row].commodity!
+
         return cell
     }
     

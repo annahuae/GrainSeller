@@ -19,6 +19,7 @@
 		E588C0D2215920CC00934702 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E588C0D1215920CC00934702 /* FilterViewController.swift */; };
 		E588C0D4215A15C800934702 /* TodayVC_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = E588C0D3215A15C800934702 /* TodayVC_Context.swift */; };
 		E588C0D7215A167500934702 /* TodayVC_Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E588C0D6215A167500934702 /* TodayVC_Filter.swift */; };
+		E588C0D9215A1DB900934702 /* TodayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E588C0D8215A1DB900934702 /* TodayTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		E588C0D1215920CC00934702 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		E588C0D3215A15C800934702 /* TodayVC_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVC_Context.swift; sourceTree = "<group>"; };
 		E588C0D6215A167500934702 /* TodayVC_Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayVC_Filter.swift; sourceTree = "<group>"; };
+		E588C0D8215A1DB900934702 /* TodayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +72,8 @@
 			children = (
 				E588C0B32158EAEC00934702 /* AppDelegate.swift */,
 				E588C0CA215914EB00934702 /* Data */,
-				E588C0C8215914D100934702 /* Controllers */,
 				E588C0D5215A160B00934702 /* Model */,
+				E588C0C8215914D100934702 /* Controllers */,
 				E588C0C9215914DF00934702 /* View */,
 				E588C0BD2158EAEE00934702 /* Assets.xcassets */,
 				E588C0CD2159154600934702 /* TodayCell.xcassets */,
@@ -95,6 +97,7 @@
 			children = (
 				E588C0B72158EAEC00934702 /* Main.storyboard */,
 				E588C0BF2158EAEE00934702 /* LaunchScreen.storyboard */,
+				E588C0D8215A1DB900934702 /* TodayTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				E588C0D7215A167500934702 /* TodayVC_Filter.swift in Sources */,
 				E588C0D2215920CC00934702 /* FilterViewController.swift in Sources */,
 				E588C0BC2158EAEC00934702 /* GrainSeller.xcdatamodeld in Sources */,
+				E588C0D9215A1DB900934702 /* TodayTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
