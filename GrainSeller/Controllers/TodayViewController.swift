@@ -32,8 +32,10 @@ class TodayViewController: UIViewController {
         super.viewDidLoad()
         
         print(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask))
-        readContext()
-        
+//        readContext()
+        let bank = ContractsBank(context: context)
+        contracts = bank.contracts
+
         print("Loaded \(contracts.count) contracts")
         
         loadFilter()
@@ -68,7 +70,7 @@ class TodayViewController: UIViewController {
     
     @IBAction func copyAction(_ sender: Any) {
         var str = ""
-        
+
         if selected.count > 0 {
             let selectedContracts = contracts.filter{ selected.contains(Int($0.id)) }
             selectedContracts.forEach{ contract in
@@ -111,21 +113,54 @@ extension TodayViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM"
+        dateFormatter.dateFormat = "d MMM"
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "todayCell") as! TodayTableViewCell
         cell.tag = Int(tableViewDataSource.items[indexPath.section][indexPath.row].id)
         
         let contract = tableViewDataSource.items[indexPath.section][indexPath.row]
         
-        cell.buyerLabel.text = (arc4random_uniform(2) == 0 ? "[CIF] " : "[FOB] ") + contract.commodity! + (contract.specification != nil ? " \(contract.specification!)" : "")
-        cell.commodityLabel.text = contract.buyer! + " to Philipines"
-        
-        if let dateFrom = contract.shipmentFrom {
-            cell.dateFrom.text = dateFormatter.string(from: dateFrom)
+        switch filter.sections[filter.sort].selected.first {
+        case filter.sections[filter.commodities].header:
+            cell.titleLabel.text = contract.buyer!
+            if contract.specification != nil {
+                cell.titleLabel.text = cell.titleLabel.text! + ", " + contract.specification!
+            }
+            cell.descriptionLabel.text = contract.basis! + " " + (contract.destination ?? "")
+        case filter.sections[filter.buyers].header:
+            cell.titleLabel.text = contract.commodity!
+            if contract.specification != nil {
+                cell.titleLabel.text = cell.titleLabel.text! + ", " + contract.specification!
+            }
+            cell.descriptionLabel.text = contract.basis! + " " + (contract.destination ?? "")
+        default:
+            cell.titleLabel.text = "Title"
+            cell.descriptionLabel.text = "Description"
         }
-        if let dateTo = contract.shipmentTo {
-            cell.dateTo.text = dateFormatter.string(from: dateTo)
+        
+        cell.dateFrom.text = dateFormatter.string(from: contract.shipmentFrom!)
+        cell.dateTo.text = dateFormatter.string(from: contract.shipmentTo!)
+
+        if contract.closed {
+            // Closed contract
+            cell.cellImage.image = UIImage(named: "done")
+            cell.dateFrom.textColor = UIColor.lightGray
+            cell.dateTo.textColor = UIColor.lightGray
+        } else {
+            // Open contract
+            
+            cell.cellImage.image = UIImage(named: "clock")
+            if contract.shipmentFrom! <= Date() {
+                // Shipment has started -> dark grey color
+                cell.cellImage.image = UIImage(named: "play")
+                cell.dateFrom.textColor = UIColor.darkGray
+                // Marking red when shipment is over
+                cell.dateTo.textColor = contract.shipmentTo! <= Date() ? UIColor.red : UIColor.darkGray
+            } else {
+                // Awaiting shipment -> light grey color
+                cell.dateFrom.textColor = UIColor.lightGray
+                cell.dateTo.textColor = UIColor.lightGray
+            }
         }
 
         return cell
@@ -136,9 +171,9 @@ extension TodayViewController: UITableViewDataSource {
 extension TodayViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            selected.append(cell.tag)
-        }
+        let cell = tableView.cellForRow(at: indexPath) as! TodayTableViewCell
+        selected.append(cell.tag)
+        cell.colorView.layer.backgroundColor = UIColor.lightGray.cgColor
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

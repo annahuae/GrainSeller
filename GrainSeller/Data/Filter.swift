@@ -31,6 +31,7 @@ class Filter : Codable {
     var nominated = 2
     var status = 3
     var sort = 4
+    var date = 5
     
     var sections : [FilterOption] = []
     
@@ -56,8 +57,8 @@ class Filter : Codable {
 
         filterOption = FilterOption()
         filterOption.header = "Sort"
-        filterOption.items = ["Nominated", "Status", "Commodity", "Buyer"]
-        filterOption.defaultValues = [filterOption.items[0]]
+        filterOption.items = ["Date", "Nominated", "Status", "Commodity", "Buyer"]
+        filterOption.defaultValues = [filterOption.items[3]]
         filterOption.multipleSelection = false
         self.sections.append(filterOption)
         

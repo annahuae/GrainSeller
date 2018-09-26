@@ -41,6 +41,7 @@ extension TodayViewController {
         let request : NSFetchRequest<Contract> = Contract.fetchRequest()
         do {
             contracts = try context.fetch(request)
+
         } catch {
             print("Error reading context \(error)")
         }
@@ -55,8 +56,8 @@ extension TodayViewController {
         }
     }
     
-    func clearContext(item: Contract) {
-        context.delete(item)
+    func clearContext() {
+        contracts.forEach { context.delete($0) }
     }
     
 }

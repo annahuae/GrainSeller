@@ -13,8 +13,9 @@ class TodayTableViewCell: UITableViewCell {
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var dateFrom: UILabel!
     @IBOutlet weak var dateTo: UILabel!
-    @IBOutlet weak var buyerLabel: UILabel!
-    @IBOutlet weak var commodityLabel: UILabel!
+    @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var volumeLabel: UILabel!
     @IBOutlet weak var basisLabel: UILabel!
     
